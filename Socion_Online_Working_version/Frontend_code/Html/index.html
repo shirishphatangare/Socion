@@ -1,0 +1,314 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+    <head>
+        <meta name="description" content="Socion is a social news aggregator. Socion provides a way to share and receive online content within online community. Socion has a concept of personalised inbox and dynamic trust update through voting"> </meta>
+        <meta name="keywords" content="Social news aggregator, personalised inbox, dynamic trust update, browse top stories, bookmarking, spam control"> </meta>
+        <title>Welcome to Socion - A social news aggregator, Login, sign up or learn more</title>
+        <link rel="stylesheet" type="text/css" href="../CSS/Socion.css"></link>
+        <link rel="shortcut icon" href="../images/favicon.ico"></link>
+        <script type="text/javascript" src="../Scripts/Login.js"></script>
+        <script type="text/javascript" src="../Scripts/Continue_Unregistered.js"></script>
+        <script type="text/javascript" src="../Scripts/Continue_Unregistered_Top.js"></script>
+        <script type="text/javascript" src="../Scripts/Continue_Unregistered_User_Specific.js"></script>
+        <script type="text/javascript" src="../Scripts/util.js"></script>
+        <script type="text/javascript" src="../Scripts/pagination.js"></script>
+        <script type="text/javascript" src="../Scripts/support.js"></script>
+        <script type="text/javascript" src="../Scripts/Base64.js"></script>
+        <script type="text/javascript" src="../Scripts/facebookUser.js"></script>
+
+        <script type="text/javascript" language="javascript">
+            javascript: window.history.forward(1);
+        </script>
+        
+        <!-- Google Analytics start -->
+        
+        <script type="text/javascript">
+
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-32525283-1']);
+        _gaq.push(['_trackPageview']);
+
+        (function() {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+
+        </script>
+        
+        <!-- Google Analytics end -->
+        
+    </head>
+    <body onload="setIndexPage()">
+    <div id="fb-root"></div>
+    <script type="text/javascript" language="javascript">
+                
+    window.fbAsyncInit = function() 
+    {
+    var uid ;
+    var accessToken;
+    var userEmail;
+    var userName;
+    
+    FB.init({
+    appId      : '273812109363920',
+    status     : true, 
+    cookie     : true,
+    xfbml      : true,
+    oauth      : true
+    });
+    
+  
+  FB.getLoginStatus(function(response) {
+  if (response.status === 'connected') {
+    uid = response.authResponse.userID;
+    accessToken = response.authResponse.accessToken;
+    
+    FB.api('/me', function(response) {
+    userEmail = response.email;
+    userName = response.name;
+    setCookie('readnews',"false",1);
+    createFacebookUser(uid,userName,userEmail,accessToken);
+    });
+  } else if (response.status === 'not_authorized') {
+    // the user is logged in to Facebook, 
+    // but has not authenticated your app
+  } else {
+    // the user isn't logged in to Facebook.
+  }
+ });
+ 
+ 
+  FB.Event.subscribe('auth.authResponseChange', function(response) {
+  if (response.status === 'connected') {
+      
+    uid = response.authResponse.userID;
+    accessToken = response.authResponse.accessToken;
+    
+    FB.api('/me', function(response) {
+    userEmail = response.email;
+    userName = response.name;
+    setCookie('readnews',"false",1);
+    createFacebookUser(uid,userName,userEmail,accessToken);
+});
+  } else if (response.status === 'not_authorized') {
+  } else {
+  }
+  
+});
+
+ 
+ 
+    FB.Event.subscribe('auth.login', function(response) {
+        show_busy_icon();
+        document.getElementById("facebookLogin").innerHTML = "Logging in via Facebook.."
+
+    });
+    
+    };
+    
+    
+    (function(d){
+    var js, id = 'facebook-jssdk'; if (d.getElementById(id)) {return;}
+    js = d.createElement('script'); js.id = id; js.async = true;
+    js.src = "//connect.facebook.net/en_US/all.js";
+    d.getElementsByTagName('head')[0].appendChild(js);
+    }(document));
+    </script>
+    
+    <div id="maintablewrap">
+    <table id="maintable" cellpadding="0" cellspacing="0" border="0">
+
+        <tbody>
+        <tr>
+            
+            <th id="indexbanner" colspan="2">
+                <table id="loginmenu" cellpadding="0" cellspacing="0" border="0">
+                <tbody>
+                    <tr align="center">
+                    <td rowspan="4"><img src="../images/Social.jpg"  width="90" height="90" border="0" alt="social media" style="margin: 10px;"></img></td>
+                    <td rowspan="4"><img src="../images/socionLogo.png" height="100" alt="Socion" border="0"></img></td>
+                    
+                    <td rowspan="4" align="center" style="width:35%">
+                    <div>
+                        <ul id="submitindexbutton"> 
+                            <li><a href="Join_Socion.html" class="menulable">Submit Story</a></li>
+                        </ul>
+                    </div>
+                    </td>    
+                    
+                    <td nowrap="nowrap"> <div class="fb-login-button" data-scope="email,publish_actions" id="facebookLogin" > Login with Facebook</div></td>
+                    <!--<td nowrap="nowrap"> Login with Facebook</td>-->
+                    
+                    <td nowrap="nowrap"  class="menulable" align="right">Email:</td>
+                    <td nowrap="nowrap"><input type="text" id="Loggeduser" class="menutext" size="25" onkeypress="if ((event.which == 13) || (event.keyCode == 13)) {chkcredentials();return false;} else {return true}" tabindex="1"></input></td>
+                </tr>
+            <tr>
+                <th  class="menulable" rowspan="2" ><a href="Join_Socion.html" class="link">Join Socion</a> </th>
+                <td class="menulable" align="right">Password:</td>
+                <td> <input  type="password" id="Loggedpasswd" class="menutext" size="25" onkeypress="if ((event.which == 13) || (event.keyCode == 13)) {chkcredentials();return false;} else {return true}" tabindex="2"></input></td>
+            </tr>
+            <tr>
+                <th colspan="2"><input class="button" type="button" value="Login" onclick="chkcredentials()" tabindex="3"></input></th>
+            </tr>
+            <tr>
+                <th class="smallmenulable"><a href="Forgot_Password.html" class="link">Forgot your password?</a></th>
+                <th colspan="2"  id="outputmessage"></th>
+            </tr>
+                </tbody>
+            </table>
+             </th>
+        </tr>
+    
+            <tr align="center">
+            
+            
+            <td class="menulable" style="background-color:#F0FFF0; " width="75%">
+            <div class="navcontainer" style="height:35px;">
+            <ul id="navlistMain" style="height:100%">
+                <li><a id="recentCategory" href="#" onclick=" document.getElementById('mainCategory').value = 'Recent'; document.getElementById('subCategory').value = 'All'; document.getElementById('pageNumber').value='1'; selectStoryType();">Recent stories</a></li>
+                <li><a id="topCategory" href="#" onclick=" document.getElementById('mainCategory').value = 'Top'; document.getElementById('subCategory').value = 'All'; selectStoryType(); document.getElementById('pageNumber').value='1'; ">Top stories</a></li>
+            </ul>
+            </div>
+            <input id="mainCategory" type="hidden"></input>
+            <input id="subCategory" type="hidden"></input>
+            <input id="pageNumber" type="hidden"></input>
+            
+            </td>
+            <td align="right" style="background-color:#F0FFF0; color:white; " nowrap="nowrap" width="25%">
+                <label for="Searchnews" class="menulable" style="background-color: #036; padding-left: 3px; padding-right: 3px;">Search:</label>
+                <input id="Searchnews" size="20" type="text" class="menutext" onkeypress="if ((event.which == 13) || (event.keyCode == 13)) {searchIndexData();return false;} else {return true}"></input>
+                <select id="searchtype" class="menutext">
+                    <option>story</option>
+                    <option>people</option>
+                </select>
+                <input id="searchbutton" type="button"  onclick="searchIndexData();"></input>
+            </td>
+        </tr>
+
+        <tr>      
+            <td align="center" class="midmenulable" style="background-color:#F0FFF0; color:white;" colspan="2">
+            <div class="navcontainer" style="height:35px;">
+            <ul id="navlistSub" style="height: 100%">
+                <li><a id="allCategory" href="#" onclick="document.getElementById('subCategory').value = 'All'; document.getElementById('pageNumber').value='1';  selectStoryType();">All</a></li>
+                <li><a id="videoCategory" href="#" onclick="document.getElementById('subCategory').value = 'Video';  document.getElementById('pageNumber').value='1'; selectStoryType();">Video</a></li>
+                <li><a id="pictureCategory" href="#" onclick="document.getElementById('subCategory').value = 'Picture';  document.getElementById('pageNumber').value='1'; selectStoryType();">Picture</a></li>
+                <li><a id="blogCategory" href="#" onclick="document.getElementById('subCategory').value = 'Blog';  document.getElementById('pageNumber').value='1'; selectStoryType();">Blog</a></li>
+                <li><a id="worldNewsCategory" href="#" onclick="document.getElementById('subCategory').value = 'World News';  document.getElementById('pageNumber').value='1'; selectStoryType();">World News</a></li>
+                <li><a id="businessCategory" href="#" onclick="document.getElementById('subCategory').value = 'Business';  document.getElementById('pageNumber').value='1'; selectStoryType();">Business</a></li>
+                <li><a id="politicsCategory" href="#" onclick="document.getElementById('subCategory').value = 'Politics';  document.getElementById('pageNumber').value='1'; selectStoryType();">Politics</a></li>
+                <li><a id="techCategory" href="#" onclick="document.getElementById('subCategory').value = 'Science/Technology';  document.getElementById('pageNumber').value='1'; selectStoryType();">Science/Technology</a></li>
+                <li><a id="natureCategory" href="#" onclick="document.getElementById('subCategory').value = 'Nature';  document.getElementById('pageNumber').value='1'; selectStoryType();">Nature</a></li>
+                <li><a id="comedyCategory" href="#" onclick="document.getElementById('subCategory').value = 'Comedy';  document.getElementById('pageNumber').value='1'; selectStoryType();">Comedy</a></li>
+                <li><a id="gamingCategory" href="#" onclick="document.getElementById('subCategory').value = 'Gaming'; document.getElementById('pageNumber').value='1'; selectStoryType();">Gaming</a></li>
+                <li><a id="cultureCategory" href="#" onclick="document.getElementById('subCategory').value = 'Culture';  document.getElementById('pageNumber').value='1'; selectStoryType();">Culture</a></li>
+                <li><a id="travelCategory" href="#" onclick="document.getElementById('subCategory').value = 'Travel';  document.getElementById('pageNumber').value='1'; selectStoryType();">Travel</a></li>
+                <li><a id="healthCategory" href="#" onclick="document.getElementById('subCategory').value = 'Health';  document.getElementById('pageNumber').value='1'; selectStoryType();">Health</a></li>
+                <li><a id="styleCategory" href="#" onclick="document.getElementById('subCategory').value = 'Lifestyle';  document.getElementById('pageNumber').value='1'; selectStoryType();">Lifestyle</a></li>
+                <li><a id="entertainmentCategory" href="#" onclick="document.getElementById('subCategory').value = 'Entertainment';  document.getElementById('pageNumber').value='1'; selectStoryType();">Entertainment</a></li>
+                <li><a id="sportsCategory" href="#" onclick="document.getElementById('subCategory').value = 'Sports';  document.getElementById('pageNumber').value='1'; selectStoryType();">Sports</a></li>
+                <li><a id="otherCategory" href="#" onclick="document.getElementById('subCategory').value = 'Other';  document.getElementById('pageNumber').value='1'; selectStoryType();">Other</a></li>
+            </ul>
+            </div>
+        </td> 
+        </tr>
+
+        
+        <tr>
+            <td id="indexpagelogincolumn">                   
+        
+            <table style="width:100%;height:100%;"><tbody>
+            <tr><th id="indexnewsbanner"> </th></tr>
+            
+            <tr><td align="center">
+            <div class="menulable">
+            <ul id="navlistPage">
+            </ul>
+            </div>
+            </td></tr>
+            
+            <tr><td><div class="newstablecontainer" id="newstablecontainer" style="height:1050px;">
+                        
+                    </div></td></tr>
+            </tbody></table>
+        </td>
+
+
+        <td align="center">
+        <div style="height:1050px;">    
+        <table id="indexpagedescriptioncolumn">
+           <tbody align="center">  
+               
+               <tr><td height="50">
+               <table cellspacing="0" cellpadding="0" border="0">
+                <tbody>
+                    <tr><td style="height: 25px; border: 1px solid; border-color: #244588; background-color: #3b5998;" align="left"><img style="padding-left: 6px; padding-top: 4px;" src="../images/facebook.jpg" alt="Facebook" border="0"></img></td></tr>
+                    <tr><td style="border: 1px solid; background-color: #eceff5; border-color: #94a3c4;"> <div class="fb-like-box" data-href="https://www.facebook.com/pages/oursocioncom/324641534244899" data-width="250" data-show-faces="false" data-stream="false" data-header="false"></div></td></tr>            
+                </tbody>
+                </table>
+
+               </td></tr>
+               <tr><td height="50"><span id="storyCount" class="bigmenulable" style="color:#333399; text-decoration:blink;"></span></td></tr>
+               
+               <tr><td height="200"><object width="300" height="200"><param name="movie" value="http://www.youtube.com/v/zLdrPSgtffI?version=3&amp;hl=en_GB&amp;rel=0"></param><param name="allowFullScreen" value="true"></param><param name="allowscriptaccess" value="always"></param><embed src="http://www.youtube.com/v/zLdrPSgtffI?version=3&amp;hl=en_GB&amp;rel=0" type="application/x-shockwave-flash" width="300" height="200" allowscriptaccess="always" allowfullscreen="true"></embed></object></td></tr>
+
+               
+              <tr id="sociondescription" align="left"> 
+                <td nowrap="nowrap" height="300">
+                <ul id="descriptionList">
+                <li style=" padding-left:5px; margin-left:5px; list-style-type:none; text-decoration:underline;" class="menulable" >Highlighted features:</li>    
+                <li class="descriptionListItem">A social news aggregator</li>
+                <li class="descriptionListItem">A way to share online stories with each other</li>
+                <li class="descriptionListItem">Personalised inbox for each registered user</li>
+                <li class="descriptionListItem">Dynamic update of trust relationships</li>
+                <li class="descriptionListItem">Browse top stories by category</li>
+                <li class="descriptionListItem">Spam control through voting</li>
+                <li class="descriptionListItem">Bookmarking of favourite links</li>
+                </ul>
+                </td>
+                </tr>
+               
+                <tr id="socioncompatible" align="left"> 
+                <td nowrap="nowrap" height="150">
+                
+                <ul id="compatibleList">
+                <li style=" padding-left:2px; margin-left:2px; list-style-type:none; text-decoration:underline;" class="menulable" >Browser Support:</li>    
+                <li class="compatibleListItem" style="background:url('../images/compatible_firefox.gif') no-repeat left center; ">Mozilla Firefox</li>
+                <li class="compatibleListItem" style="background:url('../images/compatible_chrome.gif') no-repeat left center;">Google Chrome</li>
+                <li class="compatibleListItem" style="background:url('../images/compatible_safari.gif') no-repeat left center;">Apple Safari</li>
+                </ul>
+                    
+                    
+                </td>
+                </tr>
+
+
+           </tbody>
+       </table>
+       </div>     
+    </td>
+
+    </tr>
+            
+        <tr align="center" bgcolor="white" id="copyrightmessage">
+        <td class="smallmenulable" colspan="2">
+            <ul id="footercontainer">
+            <li>&copy; 2012 by oursocion.com All Rights Reserved</li>
+            <!--<li><a href="#" class="link" onclick="openFAQWindow()">FAQ</a></li>-->
+            <li><a href="FAQ.html" class="link">FAQ</a></li>
+            <li><a href="About_us.html" class="link">About Socion</a></li>
+            <li><a href="http://blog.oursocion.com" class="link" >Blog</a></li>
+            <li><a href="#" class="link" onclick="openFeedbackWindow()">Give us feedback</a></li>
+            <li><a href="Privacy_policy.html" class="link">Privacy</a></li>
+            <li><a href="Contact_us.html" class="link">Contact us</a></li>
+            </ul>
+        </td>
+        </tr>
+
+    </tbody>
+</table>
+</div>
+</body>
+</html>
+
+

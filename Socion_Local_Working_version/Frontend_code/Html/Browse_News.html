@@ -1,0 +1,94 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+    <head>
+        <title>Browse Socion Stories Page</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link rel="shortcut icon" href="../images/favicon.ico">
+        <link rel="stylesheet" type="text/css" href="../CSS/Socion.css">
+        <link rel="stylesheet" type="text/css" href="../CSS/Menu.css" >
+        <script type="text/javascript" src="../Scripts/Browse_News.js"></script>
+        <script type="text/javascript" src="../Scripts/Ratings.js"></script>
+        <script type="text/javascript" src="../Scripts/util.js"></script>
+        <script type="text/javascript" src="../Scripts/pagination.js"></script>
+        <script type="text/javascript" src="../Scripts/facebookLogout.js"></script>
+    </head>
+    
+    <body onload="checkPageValidity(); loadMenu(); showClickedMenuBlock('browsenewsLink'); loadBrowseNewsCategoryMenu(); document.getElementById('pageNumber').value = '1'; Browse_news();">
+        <div id="fb-root"></div>
+        <input id="pageNumber" type="hidden">
+        <div id="maintablewrap">
+        <table id="maintable" cellpadding="0" cellspacing="0" border="0">
+        <tbody>
+        <tr align="center">
+            <td width="12%" rowspan="6"><table id="logindiv" cellpadding="0" cellspacing="0" border="0"><tr><td></td></tr></table></td> 
+            <td align="right" style="background-color:blue; color:white;" nowrap="nowrap">
+                <label for="Searchnews" class="smallmenulable" style="background-color: #036; padding-left: 3px;">Search Story:</label>
+                <input id="Searchnews" size="25" type="text" class="menutext" onkeypress="if ((event.which == 13) || (event.keyCode == 13)) {searchNews('1');return false;} else {return true}">
+                <input id="searchbutton" type="button"  onclick="searchNews('1')" size="5">
+            </td>
+        </tr>
+
+        <tr>      
+            <td align="center" class="smallmenulable" style="background-color:blue; color:white;">
+            <div class="navcontainer">
+            <ul id="navlistSub">
+                <li><a id="allCategory" href="" >All</a></li>
+                <li><a id="videoCategory" href="">Video</a></li>
+                <li><a id="pictureCategory" href="">Picture</a></li>
+                <li><a id="blogCategory" href="">Blog</a></li>
+                <li><a id="worldNewsCategory" href="">World News</a></li>
+                <li><a id="businessCategory" href="">Business</a></li>
+                <li><a id="politicsCategory" href="">Politics</a></li>
+                <li><a id="techCategory" href="">Science/Technology</a></li>
+                <li><a id="natureCategory" href="">Nature</a></li>
+                <li><a id="comedyCategory" href="">Comedy</a></li>
+                <li><a id="gamingCategory" href="">Gaming</a></li>
+                <li><a id="cultureCategory" href="">Culture</a></li>
+                <li><a id="travelCategory" href="">Travel</a></li>
+                <li><a id="healthCategory" href="">Health</a></li>
+                <li><a id="styleCategory" href="">Lifestyle</a></li>
+                <li><a id="entertainmentCategory" href="">Entertainment</a></li>
+                <li><a id="sportsCategory" href="">Sports</a></li>
+                <li><a id="otherCategory" href="">Other</a></li>
+            </ul>
+            </div>
+        </td> 
+        </tr>
+        
+        <tr><th align="center" id="newsbanner" > </th></tr>
+        
+        <tr class="menulable"><th id="newsCount" align="center"></th></tr>
+        <tr><td align="center" class="menulable">
+           <div>
+               <ul id="navlistPage"></ul>
+           </div>
+        </td></tr>
+        
+        <tr>
+        <td>                   
+        <div class="newstablecontainer">
+        <table cellpadding="2" cellspacing="2" border="0" id="newslist">
+        <tr><td></td></tr>
+        </table></div>
+        </td>
+        </tr>
+        
+        <tr align="center" bgcolor="white" id="copyrightmessage">
+        <td class="smallmenulable" colspan="2">
+            <ul id="footercontainer">
+            <li>&copy; 2012 by oursocion.com All Rights Reserved</li>
+            <li><a href="FAQ.html" class="link">FAQ</a></li>
+            <li><a href="About_us.html" class="link">About Socion</a></li>
+            <li><a href="http://blog.oursocion.com" class="link" >Blog</a></li>
+            <li><a href="#" class="link" onclick="openFeedbackWindow()">Give us feedback</a></li>
+            <li><a href="Privacy_policy.html" class="link">Privacy</a></li> 
+            <li><a href="Contact_us.html" class="link">Contact us</a></li>
+            </ul>
+        </td>
+        </tr>
+        
+        </tbody>
+        </table>
+        </div>    
+    </body>
+    </html>

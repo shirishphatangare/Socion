@@ -1,0 +1,111 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+        <title>Post Story</title>
+        <link rel="shortcut icon" href="../images/favicon.ico">
+        <link rel="stylesheet" type="text/css" href="../CSS/Socion.css">
+        <link rel="stylesheet" type="text/css" href="../CSS/Menu.css">
+        <script type="text/javascript" src="../Scripts/Post_News.js"></script>
+        <script type="text/javascript" src="../Scripts/util.js"></script>
+        <script type="text/javascript" src="../Scripts/facebookLogout.js"></script>
+        
+        <script language="javascript" type="text/javascript">
+        function limitText(limitField, limitCount, limitNum) {
+	if (limitField.value.length > limitNum) {
+		limitField.value = limitField.value.substring(0, limitNum);
+	} else {
+		limitCount.value = limitNum - limitField.value.length;
+	}
+        }
+        </script>
+    </head>
+
+    <body onload=" checkPageValidity(); loadMenu(); showClickedMenuBlock('postnewsLink'); setPostPage()">
+
+        <div id="fb-root"></div>
+        
+        <div id="maintablewrap">
+        <table id="maintable" cellpadding="0" cellspacing="0" border="0" >
+        <tbody>
+        <tr align="center">
+            <td width="12%" rowspan="4"><table id="logindiv" cellpadding="0" cellspacing="0"><tr><td></td></tr></table></td> 
+            <th id="newsbanner" nowrap="nowrap">Submit Story</th>
+        </tr>  
+        <tr><th id="busyicon" align="center"></th></tr>
+        <tr><td align="center"><input readonly type="hidden" id="newsImageUrl"></td></tr>
+
+
+        <tr>
+        <td style="vertical-align: middle" align="center">
+        <table class="settingstable" cellpadding="0" cellspacing="0" style="height:60%;width:87%">
+            <tbody align="center">
+            <tr  align="right">
+                <td  nowrap="nowrap" width="20%" class="menulable">Title <small>(Max. 150 chars):</small></td>
+                <td align="left" colspan="2" ><input type="text" size="85" maxlength="150" id="Newstitle" class="menutext"></td>
+            </tr>
+            <tr  align="right">
+                <td  nowrap="nowrap" width="20%" class="menulable">Description <small>(Max. 350 chars):</small></td>
+                <td align="left" >
+                <form name="myform" action="">
+                    <textarea style="resize:none;" rows="3" cols="82" id="Newsdesc" name="limitedtextarea"   onkeyup="limitText(this.form.limitedtextarea,this.form.countdown,350);"
+                    onkeydown="limitText(this.form.limitedtextarea,this.form.countdown,350);" class="menutext"> </textarea><br>
+                    <input readonly type="hidden" name="countdown" id="countdown" size="3" value="350"> 
+                </form>
+                </td>
+                <td align="left"><img id="newsImage" src="" alt="" height="100" width="100"> </td>
+            </tr>
+            <tr align="right" >
+                <td nowrap="nowrap" class="menulable">Link:</td>
+                <td align="left" colspan="2"><input type="text" id="Newsurl" size="85" onchange="getUrlHeaderParameters(this.value)" class="menutext"></td>
+            </tr>
+            <tr align="right" >
+                <td nowrap="nowrap" class="menulable">Category:</td>
+                <td align="left" colspan="2"><select id="category" class="menutext">
+                    <option selected>Select Category</option>
+                    <option>Video</option>
+                    <option>Picture</option>
+                    <option>Blog</option>
+                    <option>World News</option>
+                    <option>Business</option>
+                    <option>Politics</option>
+                    <option>Science/Technology</option>
+                    <option>Nature</option>
+                    <option>Comedy</option>
+                    <option>Gaming</option>
+                    <option>Culture</option>
+                    <option>Travel</option>
+                    <option>Health</option>
+                    <option>Lifestyle</option>
+                    <option>Entertainment</option>
+                    <option>Sports</option>
+                    <option>Other</option>
+                </select></td>
+            </tr>
+            <tr ><th colspan="3"><input type="button" value="Post Story" onclick="createNews()" class="button"></th></tr>
+            <tr><th id="outputmessage" colspan="3" align="center"></th></tr>
+            </tbody>
+        </table>
+        </td>    
+        </tr>
+            
+        <tr align="center" bgcolor="white" id="copyrightmessage">
+        <td class="smallmenulable" colspan="2">
+            <ul id="footercontainer">
+            <li>&copy; 2012 by oursocion.com All Rights Reserved</li>
+            <li><a href="FAQ.html" class="link">FAQ</a></li>
+            <li><a href="About_us.html" class="link">About Socion</a></li>
+            <li><a href="http://blog.oursocion.com" class="link" >Blog</a></li>
+            <li><a href="#" class="link" onclick="openFeedbackWindow()">Give us feedback</a></li>
+            <li><a href="Privacy_policy.html" class="link">Privacy</a></li> 
+            <li><a href="Contact_us.html" class="link">Contact us</a></li>
+            </ul>
+        </td>
+        </tr>
+
+        </tbody>
+        </table>
+        </div>    
+
+    </body>
+</html>

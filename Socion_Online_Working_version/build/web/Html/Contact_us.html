@@ -1,0 +1,89 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+    <head>
+        <title></title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"></meta>
+        <link rel="stylesheet" type="text/css" href="../CSS/Socion.css"></link>
+        <link rel="shortcut icon" href="../images/favicon.ico"></link>
+        <script type="text/javascript" src="../Scripts/Contact_us.js"></script>
+        <script type="text/javascript" src="../Scripts/util.js"></script>
+        
+        <script language="javascript" type="text/javascript">
+        function limitText(limitField, limitCount, limitNum) {
+	if (limitField.value.length > limitNum) {
+		limitField.value = limitField.value.substring(0, limitNum);
+	} else {
+		limitCount.value = limitNum - limitField.value.length;
+	}
+        }
+        </script>
+        
+    </head>
+    <body onload="setContactusPage()">
+        <div id="maintablewrap">
+        <table id="maintable" cellpadding="0" cellspacing="0" border="0">
+        <tbody>
+            <tr id="indexbanner">
+            <td width="15%"><a href ="./index.html"><img src="../images/Social.jpg"  width="90" height="90"  border="0" alt="social media" style="margin: 10px;"></img></a></td>
+            <td align="left"><a href ="./index.html"><img src="../images/socionLogo.png" height="100" border="0" alt="Socion"></img></a></td>
+            </tr>
+            
+            <tr>
+            <th id="newsbanner" colspan="2" style="height:10%">Contact Us</th>
+            </tr> 
+            
+            <tr align="center"><td colspan="2"> 
+            
+            <div style="height:300px;">
+            <table class="settingstable" cellpadding="0" cellspacing="0" style="height:100%;width:45%">
+            <tbody align="center">
+            <tr  align="right">
+                <td  nowrap="nowrap" width="20%" class="menulable">Your Name:</td>
+                <td align="left"><input type="text" size="50" id="contactName" class="menutext"></input></td>
+            </tr>
+            <tr align="right" >
+                <td nowrap="nowrap" class="menulable">Your Email:</td>
+                <td align="left"><input type="text" size="50" id="contactEmail" class="menutext"></input></td>
+            </tr>
+            <tr align="right" >
+                <td nowrap="nowrap" class="menulable">Subject:</td>
+                <td align="left"><input type="text" size="50" id="contactSubject" class="menutext"></input></td>
+            </tr>
+
+
+            <tr  align="right">
+                <td  nowrap="nowrap" width="20%" class="menulable">Message <small>(Max. 500 chars):</small></td>
+                <td align="left" >
+                <form name="myform" action="">
+                    <textarea style="resize:none;" rows="6" cols="50" id="contactMessage" name="limitedtextarea"   onkeyup="limitText(this.form.limitedtextarea,this.form.countdown,500);"
+                    onkeydown="limitText(this.form.limitedtextarea,this.form.countdown,500);" class="menutext"> </textarea><br />
+                    <input readonly="" type="hidden" name="countdown" id="countdown" size="3" value="500"> </input>
+                </form>
+                </td>
+            </tr>
+            <tr><th colspan="2"><input type="button" value="Submit" onclick="sendContactMessage()" class="button"></input></th></tr>
+            <tr><th id="outputmessage" colspan="2" align="center"></th></tr>
+            </tbody>
+        </table>
+                 </div>
+        
+            </td></tr>        
+            
+            <tr align="center" bgcolor="white" id="copyrightmessage">
+            <td class="smallmenulable" colspan="2">
+                <ul id="footercontainer">
+                <li>&copy; 2012 by oursocion.com All Rights Reserved</li>
+                <li><a href="FAQ.html" class="link">FAQ</a></li>
+                <li><a href="About_us.html" class="link">About Socion</a></li>
+                <li><a href="http://blog.oursocion.com" class="link" >Blog</a></li>
+                <li><a href="#" class="link" onclick="openFeedbackWindow()">Give us feedback</a></li>
+                <li><a href="Privacy_policy.html" class="link">Privacy</a></li> 
+                <li><a href="Contact_us.html" class="link">Contact us</a></li>
+                </ul>
+            </td>
+            </tr>
+        </tbody>
+        </table>    
+        </div>    
+    </body>
+</html>
